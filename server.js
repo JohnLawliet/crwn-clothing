@@ -28,26 +28,6 @@ if (process.env.NODE_ENV === 'production'){
     })
 }
 
-// app.post('/payment',(req, res) => {
-//     // Taking in the required params from stripe frontend to pass on to stripe
-//     const body = {
-//         source: req.body.token.id,
-//         amount: req.body.amount,
-//         currency: "usd",
-//     }
-
-//     // stripe.charges.create creates a session? and the response from stripe whether error or success is sent back to client via res
-//     // The param of create is similar to req,res coz the body here is sent as req, the (stripeErr, stripeRes) is the res from stripe
-//     stripe.charges.create(body, (stripeErr, stripeRes) => {
-//         if (stripeErr){
-//             res.status(500).send({ error: stripeErr })
-//         }
-//         else{
-//             res.status(200).send({ success: stripeRes })
-//         }
-//     })
-// })
-
 app.post('/payment', (req,res) => {
     const {priceForStripe, token} = req.body
     const idempotencykey = uuidv4()
