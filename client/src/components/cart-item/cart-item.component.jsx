@@ -14,4 +14,4 @@ const CartItem = ({item : {imageUrl, price, quantity, name}}) => {
     )
 }
 
-export default CartItem
+export default React.memo(CartItem)

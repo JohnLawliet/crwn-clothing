@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const path = require('path')
+const compression = require('compression')
 const { v4: uuidv4 } = require('uuid')
 
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
@@ -10,6 +11,12 @@ const stripe = require("stripe")(process.env.REACT_APP_STRIPE_KEY)
 
 
 const app = express()
+
+// heroku doesn't gzip the site during production but it does during build process. For this, express.js provides a lib called
+// compression to potentially compress and reduce the space required by each chunk
+app.use(compression())
+
+
 // if deployed to heroku, heroku allocates its own port through process.env.PORT
 const port = process.env.PORT || 5000
 
