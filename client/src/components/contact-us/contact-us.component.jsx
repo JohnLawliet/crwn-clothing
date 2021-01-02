@@ -81,11 +81,12 @@ const ContactUs = () => {
                     label="Message"
                     required
                 />
+                <br/>
                 <Buttons>
                     <CustomButton type="submit">SEND</CustomButton>
                     <CustomButton 
                         type="button"
-                        onClick={() => resetForm("message")} >RESET MESSAGE</CustomButton>
+                        onClick={() => resetForm("message")} isGoogleSignIn>RESET MESSAGE</CustomButton>
                 </Buttons>
             </form>
         </ContactBody>

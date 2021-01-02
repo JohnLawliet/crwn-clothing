@@ -25,16 +25,25 @@ export const Textarea = styled.textarea`
     &:focus {
       outline: none;
     }
+
+    @media screen and (max-width: 800px) {
+        height: 15vh;
+        margin: 10px 0;
+        padding: 5px;
+    }
 `
 
 export const Buttons = styled.div`
     display: flex;
+    justify-content: space-between;
+
+    @media screen and (max-width: 800px) {
         justify-content: space-between;
+        flex-direction: unset;
     }
 
-    @media screen and (max-width: 424px) {
-        .buttons{
-            display: flex;
-            flex-direction: column;
-        }    
+    @media screen and (max-width: 426px) {
+        justify-content: unset;
+        flex-direction: column;
+    } 
 `
