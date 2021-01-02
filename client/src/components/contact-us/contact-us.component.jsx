@@ -1,18 +1,41 @@
 import React, {useState} from 'react'
 import FormInput from '../form-input/form-input.component'
 import CustomButton from '../custom-button/custom-button.component'
-import {Title, ContactBody, Textarea} from './contact-us.styles'
+import {Title, ContactBody, Textarea, Buttons} from './contact-us.styles'
+import emailjs, {init} from 'emailjs-com';
 
 const ContactUs = () => {
     const [contactForm, setContactForm] = useState({
         email: '',
         subject: '',
-        message: ''
+        message: '',
+        name: ''
     })
-    const {email, subject, message} = contactForm
+    const {email, subject, message, name} = contactForm
 
-    const handleSubmit = async (event) => {
-        event.preventDefault()
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        console.log("e.target : ",e.target)
+        init("user_k2l8FaaWKIDexXvkobjvV")
+        emailjs.sendForm('service_lwd2epy', 'template_fopdvv8', e.target)
+        .then((result) => {
+            console.log(result.text);
+        }, (error) => {
+            console.log(error.text);
+        });
+        resetForm()
+    }
+
+    const resetForm = (reset = "full") => {
+        if (reset === "full")
+            setContactForm({
+                email: '',
+                subject: '',
+                message: '',
+                name: ''
+            })
+        else
+            setContactForm({ ...contactForm, message: ''})
     }
 
     const handleChange = e => {
@@ -24,7 +47,15 @@ const ContactUs = () => {
         <ContactBody>
         <Title>Contact US</Title>
             <span>For any queries or feedbacks, feel free to send us an email</span>
-            <form onSubmit={handleSubmit}>                
+            <form onSubmit={handleSubmit}>     
+                <FormInput
+                    type="text"
+                    name="name"
+                    value={name}
+                    onChange={handleChange}
+                    label="Name"
+                    required
+                />           
                 <FormInput
                     type="email"
                     name="email"
@@ -50,7 +81,12 @@ const ContactUs = () => {
                     label="Message"
                     required
                 />
-                <CustomButton type="submit">SEND</CustomButton>
+                <Buttons>
+                    <CustomButton type="submit">SEND</CustomButton>
+                    <CustomButton 
+                        type="button"
+                        onClick={() => resetForm("message")} >RESET MESSAGE</CustomButton>
+                </Buttons>
             </form>
         </ContactBody>
     )

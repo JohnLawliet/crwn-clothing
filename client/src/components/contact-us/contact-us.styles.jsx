@@ -26,3 +26,15 @@ export const Textarea = styled.textarea`
       outline: none;
     }
 `
+
+export const Buttons = styled.div`
+    display: flex;
+        justify-content: space-between;
+    }
+
+    @media screen and (max-width: 424px) {
+        .buttons{
+            display: flex;
+            flex-direction: column;
+        }    
+`

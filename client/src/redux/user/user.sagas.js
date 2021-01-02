@@ -20,6 +20,7 @@ function* getSnapshotFromUserAuth (userAuth, additionalData) {
     try{
         const userRef = yield call(createUserProfile, userAuth, additionalData)
         const userSnapshot = yield userRef.get()
+        console.log("getSnapshotFromUserAuth userSnapshot : ",userSnapshot.data())
         yield put(signInSuccess({
             id: userSnapshot.id,
             ...userSnapshot.data()
@@ -67,6 +68,10 @@ function* isUserAuthenticated () {
     }
 }
 
+
+
+
+// insert saving cart to firebase here
 function* signOut() {
     try{
         yield auth.signOut()

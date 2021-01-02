@@ -25,13 +25,16 @@ export const createUserProfile = async (userAuth, additionalData) => {
   if (!userAuth) return
 
   const userRef = firestore.doc(`users/${userAuth.uid}`)
+  
   const snapShot = await userRef.get()
+  console.log("firebase snapShot : ",snapShot)
 
   // Add data into the retrieved uid of user
   if (!snapShot.exists){
     console.log("userAuth : ",userAuth)
     const {displayName, email} = userAuth
     const createdAt = new Date()
+
     try{
       await userRef.set({
         displayName,
@@ -54,6 +57,7 @@ firebase.initializeApp(config)
 
 export const auth = firebase.auth()
 export const firestore = firebase.firestore()
+
 
 
 // Retrieve data from firestore and clean the data to get exact array as needed along with routeName

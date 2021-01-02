@@ -11,7 +11,9 @@ import { fetchCollectionFailure, fetchCollectionSuccess } from './shop.actions'
 export function* fetchCollectionAsync(){
     try{
         const collectionRef = firestore.collection('collections')
+        console.log("collectionRef : ",collectionRef)
         const snapShot = yield collectionRef.get()
+        console.log("snapShot : ",snapShot)
         const collectionsMap = yield call(convertCollectionsSnapshotToMap, snapShot)
         yield put(fetchCollectionSuccess(collectionsMap))
     }
