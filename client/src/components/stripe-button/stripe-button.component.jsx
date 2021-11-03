@@ -4,14 +4,17 @@ import axios from 'axios'
 
 const StripeCheckoutButton = ({ price }) => {
     const priceForStripe = price*100
-    const publishableKey = "pk_test_51H2z6zI5yTOoabrNe9NONixkoVjjpafFdI4WYTi7v8nxL2hbmjBLHFTO6I1c2QRN6fEpq2OspMa6Vt2tFhzoiLrf00uEFoIOfr"
+    const publishableKey =process.env.REACT_APP_PUBLIC_KEY
 
+    console.log("publishable key : ",publishableKey)
+    console.log("typeof publishable key : ",typeof(publishableKey) )
+    
     // https://new-crwn.herokuapp.com/payment
     // http://localhost:5000/payment
 
     const onToken = (token) => {
         axios({
-            url: 'https://new-crwn.herokuapp.com/payment',
+            url: process.env.REACT_APP_AXIOS_BASEURL,
             method: 'post',
             data: {
                 amount: priceForStripe,
