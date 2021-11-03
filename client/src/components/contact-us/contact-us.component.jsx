@@ -16,7 +16,7 @@ const ContactUs = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log("e.target : ",e.target)
-        init("user_k2l8FaaWKIDexXvkobjvV")
+        init(process.env.REACT_APP_EMAILJS)
         emailjs.sendForm('service_lwd2epy', 'template_fopdvv8', e.target)
         .then((result) => {
             console.log(result.text);
