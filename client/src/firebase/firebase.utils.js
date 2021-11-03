@@ -4,7 +4,7 @@ import 'firebase/auth'
 
 var config = {
   apiKey: "AIzaSyDSZIFNLdV37uknTatnv-hSYLjaJfbzfok",
-  authDomain: "new-crwn-7ac65.firebaseapp.com",
+  authDomain: process.env.REACT_APP_FIREBASE_API,
   databaseURL: "https://new-crwn-7ac65.firebaseio.com",
   projectId: "new-crwn-7ac65",
   storageBucket: "new-crwn-7ac65.appspot.com",
